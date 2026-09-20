@@ -1,0 +1,222 @@
+
+const QUESTIONS = [{"id":"g01","category":"geography","unit":"日本の地域構成","difficulty":"basic","q":"日本の都道府県の数はいくつですか？","choices":["43","45","47","49"],"answer":2,"a":"日本は1都1道2府43県、合計47都道府県です。"},{"id":"g02","category":"geography","unit":"日本の地域構成","difficulty":"basic","q":"日本の最北端に位置する都道府県はどこですか？","choices":["青森県","北海道","岩手県","秋田県"],"answer":1,"a":"北海道は日本列島の最も北に位置します。"},{"id":"g03","category":"geography","unit":"日本の地域構成","difficulty":"standard","q":"日本列島を大きく4つの島に分けるとき、北海道、本州、四国と何ですか？","choices":["九州","沖縄本島","佐渡島","対馬"],"answer":0,"a":"4大島は北海道、本州、四国、九州です。"},{"id":"g04","category":"geography","unit":"日本の地域構成","difficulty":"basic","q":"日本の国土を東西・南北に広く連なる島々としてとらえたとき、最も大きな島は何ですか？","choices":["北海道","本州","九州","四国"],"answer":1,"a":"本州は日本最大の島です。"},{"id":"g05","category":"geography","unit":"日本の地域構成","difficulty":"standard","q":"日本の標準時の基準となる東経135度の経線が通る兵庫県の都市はどこですか？","choices":["神戸市","明石市","姫路市","西宮市"],"answer":1,"a":"東経135度の子午線は兵庫県明石市付近を通ります。"},{"id":"g06","category":"geography","unit":"日本の地域構成","difficulty":"basic","q":"日本の都道府県で「道」と呼ばれるのはどこですか？","choices":["北海道","東京都","大阪府","京都府"],"answer":0,"a":"北海道だけが「道」と呼ばれます。"},{"id":"g07","category":"geography","unit":"人口","difficulty":"basic","q":"人口が特に大都市圏へ集まる現象を何といいますか？","choices":["過疎化","都市化","高齢化","工業化"],"answer":1,"a":"都市化は人口や都市的機能が都市へ集中していく現象です。"},{"id":"g08","category":"geography","unit":"人口","difficulty":"standard","q":"人口が減少し、地域の活力が低下することが問題となる現象を何といいますか？","choices":["過密化","過疎化","都市化","国際化"],"answer":1,"a":"過疎化は人口が少なくなり、生活や産業の維持が難しくなる現象です。"},{"id":"g09","category":"geography","unit":"人口","difficulty":"basic","q":"日本で高齢者の割合が増えることを何といいますか？","choices":["少子化","高齢化","過密化","都市化"],"answer":1,"a":"高齢化は人口に占める高齢者の割合が高くなることです。"},{"id":"g10","category":"geography","unit":"人口","difficulty":"standard","q":"人口が大都市などに集中して過密になる一方、地方では過疎化が進む現象を表す語として適切なのはどれですか？","choices":["人口の地域的な偏り","地形の変化","季節風","海流"],"answer":0,"a":"人口は地域によって分布に大きな違いがあります。"},{"id":"g11","category":"geography","unit":"産業","difficulty":"basic","q":"第一次産業に含まれるものはどれですか？","choices":["農業","製造業","小売業","情報通信業"],"answer":0,"a":"第一次産業には農業・林業・漁業などが含まれます。"},{"id":"g12","category":"geography","unit":"産業","difficulty":"basic","q":"第二次産業に含まれるものはどれですか？","choices":["漁業","製造業","小売業","運輸業"],"answer":1,"a":"第二次産業には鉱業・製造業・建設業などが含まれます。"},{"id":"g13","category":"geography","unit":"産業","difficulty":"basic","q":"第三次産業に含まれるものはどれですか？","choices":["農業","林業","製造業","サービス業"],"answer":3,"a":"第三次産業には商業、金融、運輸、サービスなどが含まれます。"},{"id":"g14","category":"geography","unit":"産業","difficulty":"standard","q":"大都市周辺で、都市向けに野菜や花などを生産する農業を何といいますか？","choices":["近郊農業","促成栽培","抑制栽培","焼畑農業"],"answer":0,"a":"大都市に近い地域で、新鮮な農産物を都市へ出荷する農業を近郊農業といいます。"},{"id":"g15","category":"geography","unit":"産業","difficulty":"standard","q":"暖かい地域で、出荷時期を早めるために作物を育てる方法は何ですか？","choices":["抑制栽培","促成栽培","輪作","二期作"],"answer":1,"a":"促成栽培は温室などを利用して生育を早め、出荷時期を早める方法です。"},{"id":"g16","category":"geography","unit":"産業","difficulty":"standard","q":"涼しい地域などで、出荷時期を遅らせる栽培方法は何ですか？","choices":["促成栽培","抑制栽培","近郊農業","二毛作"],"answer":1,"a":"抑制栽培は出荷時期を遅らせる栽培方法です。"},{"id":"g17","category":"geography","unit":"産業","difficulty":"basic","q":"日本の工業地帯・工業地域が太平洋側に帯状に分布する地域を何と呼びますか？","choices":["太平洋ベルト","中央高地","日本海ベルト","瀬戸内ベルト"],"answer":0,"a":"太平洋ベルトは関東から九州北部にかけて工業が集積する地域です。"},{"id":"g18","category":"geography","unit":"産業","difficulty":"standard","q":"原料や製品を大量に船で運ぶのに適している工業立地として重要なのはどこですか？","choices":["海岸部の臨海地域","山間部","高原","内陸の盆地"],"answer":0,"a":"大量輸送が可能な港を利用できる臨海部には工場が立地しやすいです。"},{"id":"g19","category":"geography","unit":"気候","difficulty":"basic","q":"日本の冬、日本海側で雪が多くなる主な原因となる風は何ですか？","choices":["南東の季節風","北西の季節風","東風","南西の季節風"],"answer":1,"a":"冬は大陸から北西の季節風が吹き、日本海で水蒸気を含んで雪を降らせます。"},{"id":"g20","category":"geography","unit":"気候","difficulty":"basic","q":"太平洋側の多くの地域で、夏に降水量が増える主な要因の一つは何ですか？","choices":["南東からの湿った空気","乾燥した北西風","寒流だけ","フェーン現象だけ"],"answer":0,"a":"夏は太平洋から湿った空気が流れ込み、降水量が増える地域があります。"},{"id":"g21","category":"geography","unit":"気候","difficulty":"standard","q":"山を越えて吹き下りる乾燥した暖かい風を何といいますか？","choices":["やませ","フェーン現象","季節風","偏西風"],"answer":1,"a":"フェーン現象では山を越えた空気が乾燥し、気温が上がることがあります。"},{"id":"g22","category":"geography","unit":"気候","difficulty":"basic","q":"北海道や東北の太平洋側などで、夏に冷たい北東風が吹いて気温が下がることがあります。この風を何といいますか？","choices":["やませ","フェーン","からっ風","季節風"],"answer":0,"a":"やませは北東から吹く冷たく湿った風で、農作物に影響することがあります。"},{"id":"g23","category":"geography","unit":"気候","difficulty":"standard","q":"瀬戸内の気候の特徴として適切なのはどれですか？","choices":["年間を通じて雨が非常に多い","比較的温暖で降水量が少ない","冬に豪雪が続く","一年中低温である"],"answer":1,"a":"瀬戸内は山地に囲まれ、比較的温暖で降水量が少ない傾向があります。"},{"id":"g24","category":"geography","unit":"気候","difficulty":"standard","q":"中央高地の気候の特徴として適切なのはどれですか？","choices":["年較差が小さい","降水量が非常に多い","内陸性で年較差が大きい","冬でも高温である"],"answer":2,"a":"中央高地は内陸にあり、海の影響を受けにくいため年較差が大きくなります。"},{"id":"g25","category":"geography","unit":"自然災害","difficulty":"basic","q":"日本で地震が多い主な理由として適切なのはどれですか？","choices":["複数のプレートの境界に位置するため","砂漠が多いため","偏西風が強いため","河川が少ないため"],"answer":0,"a":"日本周辺には複数のプレートがあり、その境界付近で地震活動が活発です。"},{"id":"g26","category":"geography","unit":"自然災害","difficulty":"basic","q":"大雨などで川の水があふれ、周辺の土地が水につかる災害を何といいますか？","choices":["洪水","津波","土石流","液状化"],"answer":0,"a":"河川の水があふれることによる災害を洪水といいます。"},{"id":"g27","category":"geography","unit":"自然災害","difficulty":"basic","q":"地震によって海底が大きく動くなどして発生する大きな海の波を何といいますか？","choices":["高潮","津波","洪水","土砂災害"],"answer":1,"a":"海底の地形変化などによって発生する大きな波が津波です。"},{"id":"g28","category":"geography","unit":"自然災害","difficulty":"standard","q":"地震の揺れによって、地盤が液体のように振る舞う現象を何といいますか？","choices":["液状化現象","風化","侵食","地盤沈下"],"answer":0,"a":"液状化現象は、地震の揺れで砂地盤などが一時的に液体状になる現象です。"},{"id":"g29","category":"geography","unit":"地域調査","difficulty":"basic","q":"地図上で実際の距離を縮めた割合を示すものを何といいますか？","choices":["縮尺","方位","等高線","凡例"],"answer":0,"a":"縮尺は地図上の距離と実際の距離の割合を示します。"},{"id":"g30","category":"geography","unit":"地域調査","difficulty":"standard","q":"同じ高さの地点を結んだ線を地形図で何といいますか？","choices":["等高線","経線","緯線","境界線"],"answer":0,"a":"等高線は標高が同じ地点を結んだ線です。"},{"id":"g31","category":"geography","unit":"地域調査","difficulty":"basic","q":"東西方向を示す0度の基準となる経線は何と呼ばれますか？","choices":["赤道","本初子午線","北回帰線","日付変更線"],"answer":1,"a":"イギリスのグリニッジを通る0度の経線を本初子午線とします。"},{"id":"g32","category":"geography","unit":"地域調査","difficulty":"basic","q":"地球を南北に分ける0度の緯線を何といいますか？","choices":["赤道","本初子午線","北回帰線","南回帰線"],"answer":0,"a":"赤道は緯度0度の線です。"},{"id":"g33","category":"geography","unit":"地域調査","difficulty":"standard","q":"日本の国土面積に対して山地・丘陵地が占める割合は、およそどのくらいですか？","choices":["約1割","約3割","約7割","約9割"],"answer":2,"a":"日本は山地・丘陵地が多く、国土の約4分の3を占めると説明されることが多いです。選択肢では約7割が最も近い値です。"},{"id":"g34","category":"geography","unit":"地域調査","difficulty":"standard","q":"地形図で土地の起伏を表すために使われる代表的な線は何ですか？","choices":["等高線","緯線","経線","行政界"],"answer":0,"a":"等高線によって土地の高さや斜面の様子を読み取れます。"},{"id":"g35","category":"geography","unit":"日本の地域構成","difficulty":"standard","q":"日本の西端に近い地域に位置する県はどれですか？","choices":["長崎県","栃木県","群馬県","山梨県"],"answer":0,"a":"長崎県には日本の西端に近い地域が含まれます。"},{"id":"g36","category":"geography","unit":"産業","difficulty":"standard","q":"北海道で大規模な畑作が盛んな地域の一つはどこですか？","choices":["十勝平野","越後平野","濃尾平野","筑紫平野"],"answer":0,"a":"十勝平野では小麦、豆類、てんさいなどの畑作が盛んです。"},{"id":"g37","category":"geography","unit":"産業","difficulty":"standard","q":"新潟県などで稲作が盛んな平野として知られるのはどこですか？","choices":["越後平野","石狩平野","濃尾平野","宮崎平野"],"answer":0,"a":"越後平野は米作りが盛んな地域として知られています。"},{"id":"g38","category":"geography","unit":"産業","difficulty":"advanced","q":"促成栽培が特に盛んな地域の一つとして知られる高知平野で、冬でも比較的温暖な理由に関係が深いのはどれですか？","choices":["黒潮の影響などで温暖な気候","流氷の影響","寒流の影響だけ","標高が非常に高いこと"],"answer":0,"a":"高知平野は温暖な気候を利用して促成栽培が行われています。"},{"id":"g39","category":"geography","unit":"自然災害","difficulty":"advanced","q":"災害による被害を小さくするため、地域で危険箇所や避難場所を確認する地図を何といいますか？","choices":["ハザードマップ","地勢図","人口ピラミッド","路線図"],"answer":0,"a":"ハザードマップは災害リスクや避難情報などを確認するための地図です。"},{"id":"g40","category":"geography","unit":"人口","difficulty":"advanced","q":"人口ピラミッドで、年齢別・男女別の人口構成を読み取ることができます。何を表す図ですか？","choices":["人口の年齢・男女構成","産業別生産額","降水量の分布","標高の分布"],"answer":0,"a":"人口ピラミッドは年齢階級別・男女別の人口構成を表します。"},{"id":"h01","category":"history","unit":"江戸時代","difficulty":"basic","q":"1603年に征夷大将軍となり江戸幕府を開いた人物は誰ですか？","choices":["織田信長","豊臣秀吉","徳川家康","徳川吉宗"],"answer":2,"a":"徳川家康は1603年に征夷大将軍となり、江戸幕府を開きました。"},{"id":"h02","category":"history","unit":"江戸時代","difficulty":"basic","q":"江戸幕府が大名を統制するために定めた法令は何ですか？","choices":["武家諸法度","御成敗式目","五箇条の御誓文","大日本帝国憲法"],"answer":0,"a":"武家諸法度は大名統制のための重要な法令です。"},{"id":"h03","category":"history","unit":"江戸時代","difficulty":"standard","q":"大名が江戸と領地を1年おきに行き来する制度を何といいますか？","choices":["参勤交代","鎖国","楽市楽座","廃藩置県"],"answer":0,"a":"参勤交代は大名を江戸と領地の間で定期的に往復させる制度です。"},{"id":"h04","category":"history","unit":"江戸時代","difficulty":"basic","q":"江戸時代、キリスト教の禁止や貿易の管理などを目的に海外との交流を制限した政策は何と呼ばれますか？","choices":["鎖国","開国","文明開化","富国強兵"],"answer":0,"a":"江戸幕府は海外との交流を厳しく制限しました。現在の教科書では「鎖国」という語の扱いに注意する場合があります。"},{"id":"h05","category":"history","unit":"江戸時代","difficulty":"basic","q":"江戸時代に幕府が貿易を認めたオランダ商館が置かれた場所はどこですか？","choices":["長崎の出島","横浜","函館","堺"],"answer":0,"a":"オランダ商館は長崎の出島に置かれました。"},{"id":"h06","category":"history","unit":"江戸時代","difficulty":"standard","q":"徳川吉宗が行った改革を何といいますか？","choices":["享保の改革","寛政の改革","天保の改革","大化の改新"],"answer":0,"a":"徳川吉宗による享保の改革です。"},{"id":"h07","category":"history","unit":"江戸時代","difficulty":"standard","q":"松平定信が行った改革を何といいますか？","choices":["享保の改革","寛政の改革","天保の改革","明治維新"],"answer":1,"a":"松平定信による寛政の改革です。"},{"id":"h08","category":"history","unit":"江戸時代","difficulty":"standard","q":"水野忠邦が行った改革を何といいますか？","choices":["享保の改革","寛政の改革","天保の改革","安政の改革"],"answer":2,"a":"水野忠邦による天保の改革です。"},{"id":"h09","category":"history","unit":"江戸時代","difficulty":"basic","q":"江戸時代の三大改革の一つで、徳川吉宗が行ったものはどれですか？","choices":["享保の改革","寛政の改革","天保の改革","大政奉還"],"answer":0,"a":"三大改革は享保・寛政・天保の改革です。"},{"id":"h10","category":"history","unit":"江戸時代","difficulty":"basic","q":"江戸時代に都市で栄えた町人文化を何といいますか？","choices":["元禄文化","国風文化","天平文化","化政文化"],"answer":0,"a":"17世紀後半から18世紀初めに上方を中心に栄えた文化を元禄文化といいます。"},{"id":"h11","category":"history","unit":"江戸時代","difficulty":"standard","q":"19世紀前半、江戸を中心に栄えた町人文化を何といいますか？","choices":["化政文化","元禄文化","飛鳥文化","天平文化"],"answer":0,"a":"化政文化は19世紀前半に江戸を中心に栄えました。"},{"id":"h12","category":"history","unit":"江戸時代","difficulty":"basic","q":"『富嶽三十六景』を描いた人物は誰ですか？","choices":["歌川広重","葛飾北斎","喜多川歌麿","近松門左衛門"],"answer":1,"a":"葛飾北斎の代表作が『富嶽三十六景』です。"},{"id":"h13","category":"history","unit":"江戸時代","difficulty":"basic","q":"『東海道五十三次』で知られる浮世絵師は誰ですか？","choices":["葛飾北斎","歌川広重","本居宣長","杉田玄白"],"answer":1,"a":"歌川広重が『東海道五十三次』を描きました。"},{"id":"h14","category":"history","unit":"江戸時代","difficulty":"standard","q":"蘭学の発展に関係が深い、オランダ語の医学書を翻訳した本は何ですか？","choices":["解体新書","学問のすゝめ","古事記伝","西洋事情"],"answer":0,"a":"杉田玄白らが翻訳した『解体新書』は蘭学の代表例です。"},{"id":"h15","category":"history","unit":"江戸時代","difficulty":"standard","q":"『古事記伝』を著した国学者は誰ですか？","choices":["本居宣長","伊能忠敬","緒方洪庵","福沢諭吉"],"answer":0,"a":"本居宣長は国学を大成し、『古事記伝』を著しました。"},{"id":"h16","category":"history","unit":"江戸時代","difficulty":"standard","q":"全国を測量し、精密な日本地図の作成に取り組んだ人物は誰ですか？","choices":["伊能忠敬","間宮林蔵","本居宣長","高野長英"],"answer":0,"a":"伊能忠敬は全国を測量し、精密な日本地図の作成に取り組みました。"},{"id":"h17","category":"history","unit":"江戸時代","difficulty":"basic","q":"江戸時代に発達した、米を中心とした流通・経済の中心地として栄えた都市はどこですか？","choices":["大阪","奈良","鎌倉","平泉"],"answer":0,"a":"大阪は「天下の台所」と呼ばれ、米の集散地として栄えました。"},{"id":"h18","category":"history","unit":"江戸時代","difficulty":"standard","q":"江戸時代に大名が領地と江戸を往復することで、交通や宿場町の発達にもつながりました。代表的な街道はどれですか？","choices":["東海道","山陽道だけ","日光街道だけ","すべて江戸時代には存在しない"],"answer":0,"a":"東海道などの五街道が整備されました。"},{"id":"h19","category":"history","unit":"江戸時代","difficulty":"basic","q":"江戸時代の寺子屋で主に学ばれたものはどれですか？","choices":["読み書き・そろばん","外国語だけ","軍事学だけ","天文学だけ"],"answer":0,"a":"寺子屋では読み書きやそろばんなど、実生活に役立つ教育が行われました。"},{"id":"h20","category":"history","unit":"江戸時代","difficulty":"standard","q":"江戸時代に農業生産を高めるため広く利用された肥料はどれですか？","choices":["干鰯などの金肥","石炭","石油","化学肥料だけ"],"answer":0,"a":"干鰯や油かすなど、購入して使う金肥が利用されました。"},{"id":"h21","category":"history","unit":"幕末","difficulty":"basic","q":"1853年に浦賀に来航したアメリカの使節は誰ですか？","choices":["ペリー","ハリス","マッカーサー","シーボルト"],"answer":0,"a":"ペリーが率いるアメリカ艦隊が浦賀に来航しました。"},{"id":"h22","category":"history","unit":"幕末","difficulty":"basic","q":"1854年、日本とアメリカの間で結ばれた条約は何ですか？","choices":["日米和親条約","日米修好通商条約","ポーツマス条約","下関条約"],"answer":0,"a":"1854年に日米和親条約が結ばれました。"},{"id":"h23","category":"history","unit":"幕末","difficulty":"standard","q":"1858年に結ばれた、領事裁判権を認め、関税自主権がないなどの内容を含む条約は何ですか？","choices":["日米修好通商条約","日米和親条約","サンフランシスコ平和条約","日英同盟"],"answer":0,"a":"日米修好通商条約は不平等条約とされる代表例です。"},{"id":"h24","category":"history","unit":"幕末","difficulty":"standard","q":"江戸幕府が政権を朝廷に返した出来事を何といいますか？","choices":["大政奉還","版籍奉還","廃藩置県","王政復古"],"answer":0,"a":"1867年、徳川慶喜が大政奉還を行いました。"},{"id":"h25","category":"history","unit":"幕末","difficulty":"standard","q":"薩摩藩と長州藩が同盟を結んだことを何といいますか？","choices":["薩長同盟","尊王攘夷","公武合体","五箇条の御誓文"],"answer":0,"a":"坂本龍馬らの仲介もあり、薩摩と長州が薩長同盟を結びました。"},{"id":"h26","category":"history","unit":"幕末","difficulty":"basic","q":"江戸幕府が政権を朝廷に返したのは何年ですか？","choices":["1603年","1853年","1867年","1871年"],"answer":2,"a":"大政奉還は1867年です。"},{"id":"h27","category":"history","unit":"明治維新","difficulty":"basic","q":"明治政府が1868年に新しい政治の方針として示したものは何ですか？","choices":["五箇条の御誓文","武家諸法度","御成敗式目","教育勅語"],"answer":0,"a":"五箇条の御誓文は新政府の基本方針を示しました。"},{"id":"h28","category":"history","unit":"明治維新","difficulty":"basic","q":"1871年、藩を廃止して府県を置いた改革は何ですか？","choices":["廃藩置県","版籍奉還","地租改正","徴兵令"],"answer":0,"a":"1871年の廃藩置県によって中央集権化が進みました。"},{"id":"h29","category":"history","unit":"明治維新","difficulty":"basic","q":"満20歳以上の男子に兵役を義務づける制度を定めたものは何ですか？","choices":["徴兵令","学制","地租改正","廃藩置県"],"answer":0,"a":"1873年に徴兵令が出されました。"},{"id":"h30","category":"history","unit":"明治維新","difficulty":"standard","q":"土地の所有者に地券を発行し、地価を基準に税を現金で納めさせる改革は何ですか？","choices":["地租改正","徴兵令","廃藩置県","殖産興業"],"answer":0,"a":"地租改正では地価を基準に地租を現金で納める仕組みが整えられました。"},{"id":"h31","category":"history","unit":"明治維新","difficulty":"basic","q":"明治政府が産業を育て、近代的な工業を発展させようとした政策を何といいますか？","choices":["殖産興業","鎖国","参勤交代","楽市楽座"],"answer":0,"a":"殖産興業は産業・工業の発展を目指す政策です。"},{"id":"h32","category":"history","unit":"明治維新","difficulty":"standard","q":"1872年に出された近代的な学校制度は何ですか？","choices":["学制","教育基本法","武家諸法度","寺子屋令"],"answer":0,"a":"1872年に学制が公布されました。"},{"id":"h33","category":"history","unit":"明治維新","difficulty":"standard","q":"文明開化の影響で広まったものとして適切なのはどれですか？","choices":["西洋の文化や生活様式","参勤交代","鎖国政策","武士の身分制度の強化"],"answer":0,"a":"文明開化では西洋の文化や生活様式が取り入れられました。"},{"id":"h34","category":"history","unit":"明治維新","difficulty":"advanced","q":"明治政府が欧米諸国に追いつくため、産業や軍事の近代化を進めた背景として適切なのはどれですか？","choices":["欧米列強による圧力を受けたため","江戸幕府が復活したため","鎖国を強化するため","農業を廃止するため"],"answer":0,"a":"欧米列強の進出に対抗し、近代国家を形成することが大きな課題でした。"},{"id":"h35","category":"history","unit":"明治維新","difficulty":"advanced","q":"「富国強兵」という政策の目的として最も適切なのはどれですか？","choices":["国を豊かにし軍事力を強化する","農業だけを発展させる","海外との交流を完全に止める","身分制度を復活させる"],"answer":0,"a":"富国強兵は経済力と軍事力を高め、近代国家をつくることを目指しました。"},{"id":"c01","category":"civics","unit":"日本国憲法","difficulty":"basic","q":"日本国憲法の基本原理の一つはどれですか？","choices":["国民主権","封建制度","鎖国","身分制"],"answer":0,"a":"日本国憲法の基本原理には国民主権、基本的人権の尊重、平和主義があります。"},{"id":"c02","category":"civics","unit":"日本国憲法","difficulty":"basic","q":"日本国憲法で、すべての国民が個人として尊重されることと関係が深いものはどれですか？","choices":["基本的人権の尊重","参勤交代","徴兵令","廃藩置県"],"answer":0,"a":"基本的人権の尊重は日本国憲法の基本原理の一つです。"},{"id":"c03","category":"civics","unit":"日本国憲法","difficulty":"basic","q":"日本国憲法の三大原理に含まれるものはどれですか？","choices":["平和主義","富国強兵","殖産興業","鎖国"],"answer":0,"a":"平和主義は日本国憲法の基本原理の一つです。"},{"id":"c04","category":"civics","unit":"基本的人権","difficulty":"basic","q":"人が生まれながらに持っている権利を何といいますか？","choices":["基本的人権","参政権だけ","納税義務","社会保障"],"answer":0,"a":"基本的人権は、個人が尊重されるための基本的な権利です。"},{"id":"c05","category":"civics","unit":"基本的人権","difficulty":"standard","q":"日本国憲法で保障される「表現の自由」は何に分類されますか？","choices":["自由権","社会権","請求権","参政権"],"answer":0,"a":"表現の自由は自由権に含まれます。"},{"id":"c06","category":"civics","unit":"基本的人権","difficulty":"standard","q":"教育を受ける権利や健康で文化的な最低限度の生活を営む権利と関係が深いのはどれですか？","choices":["社会権","自由権","参政権","請求権"],"answer":0,"a":"社会権には生存権や教育を受ける権利などがあります。"},{"id":"c07","category":"civics","unit":"基本的人権","difficulty":"basic","q":"政治に参加する権利を何といいますか？","choices":["参政権","社会権","自由権","環境権"],"answer":0,"a":"参政権は選挙権など、政治に参加するための権利です。"},{"id":"c08","category":"civics","unit":"日本国憲法","difficulty":"standard","q":"日本国憲法第9条と関係が深い原理はどれですか？","choices":["平和主義","地方自治","財産権","教育を受ける権利"],"answer":0,"a":"憲法9条は戦争の放棄などを定めており、平和主義と関係します。"},{"id":"c09","category":"civics","unit":"国会","difficulty":"basic","q":"日本の国会は何と呼ばれる機関ですか？","choices":["国権の最高機関","司法の最高機関","地方自治の最高機関","行政の最高機関"],"answer":0,"a":"日本国憲法では国会を国権の最高機関であり、国の唯一の立法機関としています。"},{"id":"c10","category":"civics","unit":"国会","difficulty":"basic","q":"日本の国会を構成する二つの議院はどれですか？","choices":["衆議院と参議院","上院と下院","地方院と国民院","内閣と裁判所"],"answer":0,"a":"日本の国会は衆議院と参議院の二院制です。"},{"id":"c11","category":"civics","unit":"国会","difficulty":"standard","q":"衆議院と参議院のうち、解散があるのはどちらですか？","choices":["衆議院","参議院","両方","どちらにもない"],"answer":0,"a":"衆議院には解散があります。参議院には解散はありません。"},{"id":"c12","category":"civics","unit":"内閣","difficulty":"basic","q":"行政の中心となる機関は何ですか？","choices":["内閣","国会","裁判所","地方議会"],"answer":0,"a":"内閣が行政権を担当します。"},{"id":"c13","category":"civics","unit":"内閣","difficulty":"basic","q":"内閣の首長は誰ですか？","choices":["内閣総理大臣","衆議院議長","最高裁判所長官","財務大臣"],"answer":0,"a":"内閣の首長は内閣総理大臣です。"},{"id":"c14","category":"civics","unit":"裁判所","difficulty":"basic","q":"司法権を担当する機関はどこですか？","choices":["裁判所","国会","内閣","地方議会"],"answer":0,"a":"裁判所が司法権を担当します。"},{"id":"c15","category":"civics","unit":"裁判所","difficulty":"standard","q":"日本の司法制度の最高機関はどこですか？","choices":["最高裁判所","高等裁判所","地方裁判所","家庭裁判所"],"answer":0,"a":"最高裁判所は日本の裁判所の最上級に位置します。"},{"id":"c16","category":"civics","unit":"三権分立","difficulty":"standard","q":"国会・内閣・裁判所が権力を分担する仕組みを何といいますか？","choices":["三権分立","地方自治","議院内閣制","直接民主制"],"answer":0,"a":"立法・行政・司法を分け、互いに抑制・均衡させる仕組みが三権分立です。"},{"id":"c17","category":"civics","unit":"地方自治","difficulty":"basic","q":"地方公共団体が地域のことを自ら決めることを何といいますか？","choices":["地方自治","国民主権","三権分立","直接請求"],"answer":0,"a":"地方自治は地域住民の意思を反映して地域を運営する考え方です。"},{"id":"c18","category":"civics","unit":"地方自治","difficulty":"basic","q":"都道府県や市区町村の長を何と呼びますか？","choices":["首長","議長","裁判官","国務大臣"],"answer":0,"a":"都道府県知事や市区町村長を首長といいます。"},{"id":"c19","category":"civics","unit":"地方自治","difficulty":"standard","q":"地方公共団体の議会の議員や首長を住民が直接選ぶ制度と関係が深いものはどれですか？","choices":["直接選挙","間接選挙","任命制","世襲制"],"answer":0,"a":"地方自治では住民が首長や議員を直接選挙します。"},{"id":"c20","category":"civics","unit":"選挙","difficulty":"basic","q":"日本で国民が代表者を選挙によって選び、政治を行う仕組みを何といいますか？","choices":["間接民主制","専制政治","封建制度","君主制"],"answer":0,"a":"日本は代表者を選ぶ間接民主制を基本としています。"},{"id":"c21","category":"civics","unit":"選挙","difficulty":"standard","q":"選挙で一人の有権者が一票を持つ原則を何といいますか？","choices":["普通選挙","平等選挙","秘密選挙","直接選挙"],"answer":1,"a":"一人一票の原則は平等選挙です。"},{"id":"c22","category":"civics","unit":"選挙","difficulty":"standard","q":"誰に投票したかを他人に知られないようにする原則は何ですか？","choices":["秘密選挙","平等選挙","直接選挙","普通選挙"],"answer":0,"a":"秘密選挙は投票内容を他人に知られないようにする原則です。"},{"id":"c23","category":"civics","unit":"消費生活","difficulty":"basic","q":"商品やサービスを購入して生活する人を何といいますか？","choices":["消費者","生産者","納税者だけ","裁判員"],"answer":0,"a":"商品やサービスを購入して利用する人を消費者といいます。"},{"id":"c24","category":"civics","unit":"消費生活","difficulty":"standard","q":"契約は原則として、どのような意思が合致することで成立しますか？","choices":["申し込みと承諾","広告と口コミ","値札とレシート","電話とメール"],"answer":0,"a":"契約は当事者の申し込みと承諾の意思が合致することで成立します。"},{"id":"c25","category":"civics","unit":"現代社会","difficulty":"advanced","q":"情報社会で情報を受け取る際に特に大切な姿勢はどれですか？","choices":["複数の情報源を確認する","最初に見た情報を必ず信じる","見出しだけで判断する","発信者を確認しない"],"answer":0,"a":"情報の正確性や根拠を確認し、複数の情報源を比較することが重要です。"}];
+
+const STORAGE="shakaiState_v04";
+const defaultState={
+  stats:{}, answers:0, correct:0,
+  flash:{}, tests:[], scopes:{
+    mid:[], final:[]
+  }
+};
+let state=loadState();
+let screen="home", test=null, flash=null;
+
+function loadState(){
+  try{return Object.assign(structuredClone(defaultState),JSON.parse(localStorage.getItem(STORAGE)||"{}"));}
+  catch(e){return structuredClone(defaultState);}
+}
+function saveState(){localStorage.setItem(STORAGE,JSON.stringify(state));}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function catName(c){return {geography:"地理",history:"歴史",civics:"公民"}[c]||c}
+function diffName(d){return {basic:"基礎",standard:"標準",advanced:"応用"}[d]||d}
+function statFor(id){
+  if(!state.stats[id]) state.stats[id]={attempts:0,correct:0,wrong:0,streak:0,last:0};
+  return state.stats[id];
+}
+function weakness(q){
+  const s=statFor(q.id), f=state.flash[q.id];
+  let w=0;
+  if(s.attempts===0) w+=15;
+  else {
+    const acc=s.correct/s.attempts;
+    w+=(1-acc)*70;
+    if(s.streak===0) w+=15;
+  }
+  if(f==="bad") w+=25; else if(f==="maybe") w+=12;
+  return Math.min(100,Math.round(w));
+}
+function weakQs(){
+  return QUESTIONS.filter(q=>weakness(q)>=45).sort((a,b)=>weakness(b)-weakness(a));
+}
+function unitStats(){
+  const map={};
+  QUESTIONS.forEach(q=>{
+    const s=statFor(q.id);
+    if(!map[q.unit]) map[q.unit]={category:q.category,attempts:0,correct:0,weak:0};
+    map[q.unit].attempts+=s.attempts; map[q.unit].correct+=s.correct;
+    if(weakness(q)>=45) map[q.unit].weak++;
+  });
+  return map;
+}
+function render(){
+  const root=document.getElementById("app");
+  root.innerHTML=nav()+({
+    home:homeView,study:studyView,testSetup:testSetupView,testRun:testRunView,flash:flashView,stats:statsView,scope:scopeView
+  }[screen])();
+  if(screen==="testRun") bindTestRun();
+  if(screen==="flash") bindFlash();
+}
+function nav(){
+ return `<div class="nav">
+  ${[["home","ホーム"],["study","学習"],["testSetup","テスト"],["stats","成績"],["scope","範囲設定"]].map(x=>`<button class="${screen===x[0]?"active":""}" onclick="go('${x[0]}')">${x[1]}</button>`).join("")}
+ </div>`;
+}
+function go(s){screen=s;test=null;flash=null;render()}
+function homeView(){
+ const total=state.answers, acc=total?Math.round(state.correct/total*100):0, weak=weakQs();
+ const units=unitStats();
+ const top=Object.entries(units).filter(([u,v])=>v.weak>0).sort((a,b)=>b[1].weak-a[1].weak).slice(0,3);
+ return `<div class="card">
+   <h2>今日のおすすめ</h2>
+   ${top.length?`<p>まずは <b>${top.map(x=>esc(x[0])).join("・")}</b> を復習しましょう。</p>
+   <div class="actions"><button class="btn" onclick="startWeakStudy()">苦手克服を始める</button><button class="btn secondary" onclick="go('flash')">フラッシュカード</button></div>`
+   :`<p>まだ十分な学習データがありません。まず5〜10問解いてみましょう。</p>
+   <div class="actions"><button class="btn" onclick="go('testSetup')">確認テストを始める</button></div>`}
+ </div>
+ <div class="card"><h2>学習状況</h2>
+  <div class="statgrid">
+   <div class="stat"><span class="muted">正答率</span><b>${acc}%</b></div>
+   <div class="stat"><span class="muted">回答数</span><b>${total}</b></div>
+   <div class="stat"><span class="muted">苦手問題</span><b>${weak}</b></div>
+   <div class="stat"><span class="muted">テスト回数</span><b>${state.tests.length}</b></div>
+  </div>
+ </div>
+ <div class="grid">
+  <div class="card"><h3>📖 学習</h3><p class="muted">単元を選んでフラッシュカードで覚える</p><button class="btn full" onclick="go('study')">学習する</button></div>
+  <div class="card"><h3>📝 テスト</h3><p class="muted">範囲・難易度・問題数を選択</p><button class="btn full" onclick="go('testSetup')">テストする</button></div>
+ </div>
+ <div class="card"><h3>💡 使い方</h3><p class="muted">間違えた問題や「あやしい」にしたカードは苦手度が上がります。苦手克服モードでは優先的に出題します。</p></div>`;
+}
+function studyView(){
+ return `<div class="card"><h2>📖 学習</h2><p class="muted">単元を選んでフラッシュカード学習を始めます。</p>
+ <label class="field">分野<select id="studyCat" onchange="updateStudyUnits()"><option value="all">すべて</option><option value="geography">地理</option><option value="history">歴史</option><option value="civics">公民</option></select></label>
+ <label class="field">単元<select id="studyUnit"><option value="all">すべて</option>${[...new Set(QUESTIONS.map(q=>q.unit))].map(u=>`<option>${esc(u)}</option>`).join("")}</select></label>
+ <div class="actions"><button class="btn" onclick="startFlashFromStudy()">学習開始</button><button class="btn warn" onclick="startWeakStudy()">苦手だけ学ぶ</button></div></div>`;
+}
+function updateStudyUnits(){
+ const cat=document.getElementById("studyCat").value, units=[...new Set(QUESTIONS.filter(q=>cat==="all"||q.category===cat).map(q=>q.unit))];
+ document.getElementById("studyUnit").innerHTML='<option value="all">すべて</option>'+units.map(u=>`<option>${esc(u)}</option>`).join("");
+}
+function startFlashFromStudy(){
+ const cat=document.getElementById("studyCat").value, unit=document.getElementById("studyUnit").value;
+ let qs=QUESTIONS.filter(q=>(cat==="all"||q.category===cat)&&(unit==="all"||q.unit===unit));
+ startFlash(qs);
+}
+function startWeakStudy(){startFlash(weakQs().slice(0,20).length?weakQs().slice(0,20):QUESTIONS.slice(0,10))}
+function startFlash(qs){flash={qs:[...qs],i:0,show:false};screen="flash";render()}
+function flashView(){
+ if(!flash) return `<div class="card"><h2>フラッシュカード</h2><p class="muted">学習方法を選んでください。</p></div>`;
+ const q=flash.qs[flash.i];
+ if(!q) return `<div class="card center"><h2>学習終了！</h2><p>今回のカードを確認しました。</p><button class="btn" onclick="go('home')">ホームへ</button></div>`;
+ return `<div class="card"><div class="muted">${flash.i+1} / ${flash.qs.length}　<span class="tag">${catName(q.category)}</span><span class="tag">${esc(q.unit)}</span></div>
+ <hr><h2>${esc(q.q)}</h2>
+ ${flash.show?`<div class="notice"><b>答え・解説</b><p>${esc(q.choices[q.answer])}</p><p>${esc(q.a)}</p></div>`:`<button class="btn full" onclick="flash.show=true;render()">答えを見る</button>`}
+ <div class="actions">
+  ${flash.show?`<button class="btn bad" onclick="rateFlash('bad')">まだ覚えていない</button><button class="btn warn" onclick="rateFlash('maybe')">あやしい</button><button class="btn good" onclick="rateFlash('good')">覚えた</button>`:""}
+ </div></div>`;
+}
+function rateFlash(r){
+ const q=flash.qs[flash.i]; state.flash[q.id]=r; saveState(); flash.i++;flash.show=false;render();
+}
+function testSetupView(){
+ const units=[...new Set(QUESTIONS.map(q=>q.unit))];
+ return `<div class="card"><h2>📝 テスト設定</h2>
+ <label class="field">テスト種類<select id="testType" onchange="applyPreset()"><option value="free">自由に選ぶ</option><option value="mid">中間テスト対策</option><option value="final">期末テスト対策</option><option value="weak">苦手テスト</option></select></label>
+ <label class="field">分野<select id="testCat" onchange="updateTestUnits()"><option value="all">すべて</option><option value="geography">地理</option><option value="history">歴史</option><option value="civics">公民</option></select></label>
+ <label class="field">単元<select id="testUnit"><option value="all">すべて</option>${units.map(u=>`<option>${esc(u)}</option>`).join("")}</select></label>
+ <label class="field">難易度<select id="testDiff"><option value="auto">おまかせ</option><option value="basic">⭐ 基礎</option><option value="standard">⭐⭐ 標準</option><option value="advanced">⭐⭐⭐ 応用</option></select></label>
+ <label class="field">問題数<select id="testCount"><option>5</option><option selected>10</option><option>20</option><option>30</option></select></label>
+ <label class="check"><input id="weakPriority" type="checkbox"> 苦手問題を優先する</label>
+ <div class="actions"><button class="btn" onclick="beginTest()">テスト開始</button></div>
+ <p class="muted">※中間・期末の初期範囲はサンプルです。「範囲設定」で自分の学校の範囲に変更できます。</p>
+ </div>`;
+}
+function updateTestUnits(){
+ const cat=document.getElementById("testCat").value, units=[...new Set(QUESTIONS.filter(q=>cat==="all"||q.category===cat).map(q=>q.unit))];
+ document.getElementById("testUnit").innerHTML='<option value="all">すべて</option>'+units.map(u=>`<option>${esc(u)}</option>`).join("");
+}
+function applyPreset(){
+ const t=document.getElementById("testType").value;
+ if(t==="weak"){
+   document.getElementById("testCat").value="all";updateTestUnits();document.getElementById("testUnit").value="all";document.getElementById("weakPriority").checked=true;return;
+ }
+ if(t==="mid"||t==="final"){
+   document.getElementById("testCat").value="all";updateTestUnits();
+   const saved=state.scopes[t];
+   const preset=saved.length?saved:(t==="mid"?["日本の地域構成","人口","産業","江戸時代"]:["気候","自然災害","江戸時代","幕末","明治維新"]);
+   document.getElementById("testUnit").value="all";
+   document.getElementById("weakPriority").checked=false;
+ }
+}
+function beginTest(){
+ const type=document.getElementById("testType").value, cat=document.getElementById("testCat").value, unit=document.getElementById("testUnit").value, diff=document.getElementById("testDiff").value, count=+document.getElementById("testCount").value, weak=document.getElementById("weakPriority").checked;
+ let qs=QUESTIONS.filter(q=>(cat==="all"||q.category===cat)&&(unit==="all"||q.unit===unit));
+ if(type==="mid"||type==="final"){
+   const scope=state.scopes[type].length?state.scopes[type]:(type==="mid"?["日本の地域構成","人口","産業","江戸時代"]:["気候","自然災害","江戸時代","幕末","明治維新"]);
+   qs=QUESTIONS.filter(q=>scope.includes(q.unit));
+ }
+ if(type==="weak") qs=weakQs().length?weakQs():QUESTIONS;
+ if(diff!=="auto") qs=qs.filter(q=>q.difficulty===diff);
+ qs=[...qs];
+ if(weak) qs.sort((a,b)=>weakness(b)-weakness(a)); else qs.sort(()=>Math.random()-.5);
+ qs=qs.slice(0,count);
+ if(!qs.length){alert("条件に合う問題がありません。設定を変更してください。");return;}
+ test={type,qs,i:0,selected:null,score:0,started:Date.now(),finished:false};
+ screen="testRun";render();
+}
+function testRunView(){
+ if(!test) return "";
+ const q=test.qs[test.i];
+ if(!q) return resultView();
+ return `<div class="card"><div class="muted">第${test.i+1}問 / ${test.qs.length}　<span class="tag">${catName(q.category)}</span><span class="tag">${esc(q.unit)}</span><span class="tag">${diffName(q.difficulty)}</span></div>
+ <div class="progress"><i style="width:${(test.i/test.qs.length)*100}%"></i></div><hr>
+ <h2>${esc(q.q)}</h2>
+ <div id="choices">${q.choices.map((c,i)=>`<button class="choice" data-i="${i}"><span class="optionlabel">${String.fromCharCode(65+i)}</span>${esc(c)}</button>`).join("")}</div>
+ <div id="feedback"></div>
+ <div class="actions"><button class="btn secondary" id="nextBtn" disabled>次へ</button></div>
+ </div>`;
+}
+function bindTestRun(){
+ document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{
+   if(test.selected!==null) return;
+   test.selected=+b.dataset.i;
+   const q=test.qs[test.i], ok=test.selected===q.answer, s=statFor(q.id);
+   s.attempts++; state.answers++; if(ok){s.correct++;s.streak++;state.correct++;}else{s.wrong++;s.streak=0}
+   s.last=Date.now(); saveState();
+   document.querySelectorAll(".choice").forEach(x=>{const i=+x.dataset.i;if(i===q.answer)x.classList.add("correct");if(i===test.selected&&!ok)x.classList.add("wrong")});
+   document.getElementById("feedback").innerHTML=`<div class="${ok?"notice":"notice"}" style="${ok?"background:#f0fdf4;border-color:#bbf7d0":"background:#fef2f2;border-color:#fecaca"}"><b>${ok?"正解！":"不正解"}</b><p>正解：${esc(q.choices[q.answer])}</p><p>${esc(q.a)}</p></div>`;
+   document.getElementById("nextBtn").disabled=false; test.score+=ok?1:0;
+ });
+ document.getElementById("nextBtn").onclick=()=>{test.i++;test.selected=null;render()};
+}
+function resultView(){
+ const pct=Math.round(test.score/test.qs.length*100);
+ state.tests.unshift({date:new Date().toISOString(),score:test.score,total:test.qs.length,pct,type:test.type});
+ state.tests=state.tests.slice(0,30);saveState();
+ return `<div class="card center"><h2>テスト終了！</h2><div class="score">${pct}点</div><p>${test.qs.length}問中 <b>${test.score}問正解</b></p>
+ <div class="progress"><i style="width:${pct}%"></i></div>
+ <div class="actions"><button class="btn" onclick="go('testSetup')">もう一度</button><button class="btn warn" onclick="startWeakStudy()">苦手を復習</button><button class="btn secondary" onclick="go('home')">ホーム</button></div></div>`;
+}
+function statsView(){
+ const units=unitStats(), rows=Object.entries(units).sort((a,b)=>b[1].weak-a[1].weak);
+ return `<div class="card"><h2>📊 成績</h2><div class="statgrid"><div class="stat"><span class="muted">回答数</span><b>${state.answers}</b></div><div class="stat"><span class="muted">正解数</span><b>${state.correct}</b></div><div class="stat"><span class="muted">正答率</span><b>${state.answers?Math.round(state.correct/state.answers*100):0}%</b></div><div class="stat"><span class="muted">苦手</span><b>${weakQs().length}</b></div></div></div>
+ <div class="card"><h3>単元別</h3><table><tr><th>単元</th><th>回答</th><th>正答率</th><th>苦手</th></tr>${rows.map(([u,v])=>`<tr><td>${esc(u)}<br><span class="muted">${catName(v.category)}</span></td><td>${v.attempts}</td><td>${v.attempts?Math.round(v.correct/v.attempts*100):0}%</td><td>${v.weak?`<span class="badge-bad">${v.weak}問</span>`:"-"}</td></tr>`).join("")}</table></div>
+ <div class="card"><h3>テスト履歴</h3>${state.tests.length?`<table><tr><th>日時</th><th>種類</th><th>点数</th></tr>${state.tests.map(t=>`<tr><td>${new Date(t.date).toLocaleString("ja-JP")}</td><td>${t.type==="mid"?"中間":t.type==="final"?"期末":t.type==="weak"?"苦手":"自由"}</td><td><b>${t.pct}点</b>（${t.score}/${t.total}）</td></tr>`).join("")}</table>`:"<p class='muted'>まだテスト履歴がありません。</p>"}</div>`;
+}
+function scopeView(){
+ const units=[...new Set(QUESTIONS.map(q=>q.unit))];
+ return `<div class="card"><h2>⚙️ テスト範囲設定</h2><p class="muted">学校の実際の中間・期末テスト範囲に合わせて単元を選択できます。</p>
+ <h3>中間テスト</h3><div class="checks">${units.map(u=>`<label class="check"><input type="checkbox" name="mid" value="${esc(u)}" ${state.scopes.mid.includes(u)?"checked":""}>${esc(u)}</label>`).join("")}</div>
+ <h3 style="margin-top:18px">期末テスト</h3><div class="checks">${units.map(u=>`<label class="check"><input type="checkbox" name="final" value="${esc(u)}" ${state.scopes.final.includes(u)?"checked":""}>${esc(u)}</label>`).join("")}</div>
+ <div class="actions"><button class="btn" onclick="saveScopes()">保存する</button><button class="btn secondary" onclick="resetScopes()">初期設定に戻す</button></div></div>`;
+}
+function saveScopes(){
+ for(const k of ["mid","final"]) state.scopes[k]=[...document.querySelectorAll(`input[name="${k}"]:checked`)].map(x=>x.value);
+ saveState();alert("テスト範囲を保存しました。");render();
+}
+function resetScopes(){
+ state.scopes.mid=["日本の地域構成","人口","産業","江戸時代"];
+ state.scopes.final=["気候","自然災害","江戸時代","幕末","明治維新"];
+ saveState();render();
+}
+render();
