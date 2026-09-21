@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#2563eb">
 <meta name="description" content="中学2年生向け社会科の学習・弱点克服・テスト対策アプリ">
 <link rel="manifest" href="manifest.json">
-<title>中2社会 学習ナビ v0.8</title>
-    <link rel="stylesheet" href="style.css">
+<title>中2社会 学習ナビ v0.9</title>
+    <link rel="stylesheet" href="style.css?v=0.9">
 </head>
 <body>
 <div class="app-shell">
@@ -16,9 +16,98 @@
   <div><div class="eyebrow">MIDDLE SCHOOL 2 • SOCIAL STUDIES</div><h1>中2社会 学習ナビ</h1><p>覚える → 解く → 苦手を発見 → 克服する</p></div>
 </header>
 <main id="app"></main>
-<footer><small>v0.8 / 500問・3学期対応 / 学習記録はこの端末のブラウザに保存されます</small></footer>
+<footer><small>v0.9 / 500問・3学期対応・自動更新対応 / 学習記録はこの端末のブラウザに保存されます</small></footer>
 </div>
-<script src="app.js"></script>
-<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("./service-worker.js").catch(()=>{});}</script>
+<script src="app.js?v=0.9"></script>
+
+<script>
+(function () {
+  "use strict";
+  if (!("serviceWorker" in navigator)) return;
+
+  var SW_URL = "./service-worker.js?v=0.9";
+  var userRequestedUpdate = false;
+  var reloading = false;
+
+  function showUpdateBanner(registration) {
+    if (document.getElementById("sw-update-banner")) return;
+
+    var banner = document.createElement("div");
+    banner.id = "sw-update-banner";
+    banner.innerHTML =
+      '<div class="sw-update-inner">' +
+        '<div class="sw-update-message">' +
+          '<strong>新しいバージョンがあります</strong>' +
+          '<span>最新版へ更新できます。</span>' +
+        '</div>' +
+        '<button id="sw-update-btn" type="button">今すぐ更新</button>' +
+      '</div>';
+
+    document.body.appendChild(banner);
+
+    document.getElementById("sw-update-btn").addEventListener("click", function () {
+      userRequestedUpdate = true;
+      var waiting = registration.waiting;
+
+      if (waiting) {
+        waiting.postMessage({ type: "SKIP_WAITING" });
+        return;
+      }
+
+      registration.update()
+        .then(function () {
+          if (registration.waiting) {
+            registration.waiting.postMessage({ type: "SKIP_WAITING" });
+          } else {
+            window.location.reload();
+          }
+        })
+        .catch(function () {
+          window.location.reload();
+        });
+    });
+  }
+
+  navigator.serviceWorker.addEventListener("controllerchange", function () {
+    if (!userRequestedUpdate || reloading) return;
+    reloading = true;
+    window.location.reload();
+  });
+
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register(SW_URL, {
+      updateViaCache: "none"
+    })
+    .then(function (registration) {
+      return registration.update().then(function () {
+        return registration;
+      });
+    })
+    .then(function (registration) {
+      if (registration.waiting) {
+        showUpdateBanner(registration);
+      }
+
+      registration.addEventListener("updatefound", function () {
+        var installing = registration.installing;
+        if (!installing) return;
+
+        installing.addEventListener("statechange", function () {
+          if (
+            installing.state === "installed" &&
+            navigator.serviceWorker.controller
+          ) {
+            showUpdateBanner(registration);
+          }
+        });
+      });
+    })
+    .catch(function (error) {
+      console.warn("Service Worker update check failed:", error);
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
